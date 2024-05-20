@@ -1,12 +1,13 @@
 import CategoryFilter from '@/components/filter/category-filter';
 import SearchBar from '@/components/filter/search-bar';
 import PostsGrid from '@/components/posts/posts-grid';
+import PostsScrollGrid from '@/components/posts/posts-scroll-grid';
 import { getAllPostsFromNotion } from '@/services/posts';
 import { toUniqueArray } from '@/utils/to-unique-array';
 
 export const metadata = {
   title: 'Blog',
-  description: 'All posts are created by notion ai.',
+  description: 'Discover new ideas',
 };
 
 export default async function BlogPage() {
@@ -25,7 +26,8 @@ export default async function BlogPage() {
         <SearchBar />
         <CategoryFilter allCategories={allCategories} />
       </section>
-      <PostsGrid allPosts={allPosts} />
+      {/* <PostsGrid allPosts={allPosts} /> */}
+      <PostsScrollGrid allPosts={allPosts} />
     </>
   );
 }

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Welcome | Jihoo Kim',
+  title: 'Welcome | Application Name',
 };
 
 export default function HomePage() {

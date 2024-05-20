@@ -54,7 +54,9 @@ export default function SyncPage() {
       promises.push(
         fetch(`/api/revalidate?path=/sitemap.xml&password=${password}`)
       );
-      promises.push(fetch(`/api/revalidate?path=/blog&password=${password}`));
+      promises.push(
+        fetch(`/api/revalidate?path=/blog&password=${password}`)
+      );
       slugsToRevalidate.forEach((slug) => {
         promises.push(
           fetch(`/api/revalidate?path=/blog/${slug}&password=${password}`)
