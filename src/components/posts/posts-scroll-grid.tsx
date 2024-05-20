@@ -35,9 +35,9 @@ export default function PostsScrollGrid({ allPosts }: { allPosts: Post[] }) {
   const settings = {
     className: "center",
     centerMode: true,
-    infinite: true,
+    infinite: false,
     centerPadding: "5px",
-    slidesToShow: isMobileDevice ? 1 : 3,
+    slidesToShow: isMobileDevice ? Math.min(1, posts.length) : Math.min(3, posts.length),
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
@@ -66,14 +66,14 @@ export default function PostsScrollGrid({ allPosts }: { allPosts: Post[] }) {
   }
 
   return (
-    <div className="slider-container">
-        <Slider {...settings}>
+
+    <Slider {...settings}>
         {posts.map((post) => (
             <div className='bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl' key={post.slug}>
               <PostCard post={post} />
             </div>
           ))}
         
-        </Slider> </div>
+        </Slider>
   );
 }
