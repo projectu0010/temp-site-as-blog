@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import PostCard from '@/components/posts/post-card';
 import usePosts from '@/hooks/use-posts';
 import { Post } from '@/types/post';
 import Slider from "react-slick";
-import React from "react";
+import React, {} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
@@ -14,10 +14,12 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 export default function PostsScrollGrid({ allPosts }: { allPosts: Post[] }) {
   const { posts, totalPages } = usePosts(allPosts);
   const rootRef = useRef<HTMLDivElement>(null);
-  /* Storing user's device details in a variable*/
-  let details = navigator.userAgent; 
-    
-  /* Creating a regular expression  
+  const [pageURL, setPageURL] = useState("");
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  useEffect(() => {
+    setPageURL(window.location.href);
+    if (navigator.userAgent) {
+       /* Creating a regular expression  
   containing some mobile devices keywords  
   to search it in details string*/
   let regexp = /android|iphone|kindle|ipad/i; 
@@ -25,6 +27,13 @@ export default function PostsScrollGrid({ allPosts }: { allPosts: Post[] }) {
   /* Using test() method to search regexp in details 
   it returns boolean value*/
   let isMobileDevice = regexp.test(details); 
+  setIsMobileDevice(isMobileDevice);
+    }
+  }, []);
+  /* Storing user's device details in a variable*/
+  let details = navigator.userAgent; 
+    
+ 
   const settings = {
     className: "center",
     centerMode: true,
